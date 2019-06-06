@@ -5,7 +5,9 @@ import sys
 
 
 def main():
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'arqui.settings')
+    # times = 1
+    configuration='arqui.settings'
+    os.environ['DJANGO_SETTINGS_MODULE']=configuration
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
@@ -15,6 +17,24 @@ def main():
             "forget to activate a virtual environment?"
         ) from exc
     execute_from_command_line(sys.argv)
+    # try:
+    #     os.environ['DJANGO_SETTINGS_MODULE']=configuration
+    #     execute_from_command_line(sys.argv)
+    # except: 
+    #     pass
+    # while times <= 3:
+    #     if times==1:
+    #         configuration='arqui.settings'
+    #     elif times==2:
+    #         configuration='arqui.pi_settings'
+    #     else:
+    #         configuration='arqui.local_settings'
+    #     try:
+    #         os.environ['DJANGO_SETTINGS_MODULE']=configuration
+    #         execute_from_command_line(sys.argv)
+    #     except: 
+    #         pass
+        # times+=1
 
 
 if __name__ == '__main__':

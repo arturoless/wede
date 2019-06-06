@@ -15,17 +15,19 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# https://docs.djangoproject.com/en/2.2/ref/settings/#databases
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '-(!w4wx5fc34(gk703+u40_sctk-m406q^ibl)(f27t!snw45#'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -93,14 +95,7 @@ WSGI_APPLICATION = 'arqui.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -139,3 +134,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+try:
+    from arqui.local_settings import *
+except ImportError:
+    pass
+if not DEBUG:
+    SECRET_KEY = '-(!w4wx5fc34(gk703+u40_sctk-m406q^ibl)(f27t!snw45#'
+    DATABASES = {
+        'default': {
+            'ENGINE' : 'django.db.backends.postgresql_psycopg2',
+            'NAME' : 'isaac',
+            'USER': 'postgres',
+            'PASSWORD': 'vasquez123',
+            'HOST': 'localhost',
+            'PORT': '5432'
+        }
+    }

@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'KEY'
+# SECRET_KEY = 'KEY'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -102,11 +102,7 @@ WSGI_APPLICATION = 'arqui.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL')
-    )
-}
+
 
 
 # Password validation
@@ -151,3 +147,15 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+try:
+    from arqui.pi_settings import *
+except ImportError:
+    pass
+if not DEBUG:
+    SECRET_KEY = 'KEY'
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=config('DATABASE_URL')
+        )
+    }
