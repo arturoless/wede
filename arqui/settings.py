@@ -29,7 +29,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-
+PI=False
 
 ALLOWED_HOSTS = ['wede.herokuapp.com']
 
@@ -149,13 +149,15 @@ STATICFILES_DIRS = (
 )
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-print(socket.gethostbyname(socket.gethostname()))
-# try:
-    
-#     from arqui.pi_settings import *
-# except ImportError:
-#     pass
-if not DEBUG:
+if socket.gethostbyname(socket.gethostname()) == '192.168.1.7':
+    from arqui.pi_settings import *
+else:
+    try:
+        from arqui.local_settings import *
+    except ImportError:
+        pass
+
+if not PI:
     SECRET_KEY = 'KEY'
     DATABASES = {
         'default': dj_database_url.config(
