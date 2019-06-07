@@ -148,10 +148,10 @@ STATICFILES_DIRS = (
 )
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-try:
-    from arqui.local_settings import *
-except ImportError:
-    pass
+# try:
+#     from arqui.local_settings import *
+# except ImportError:
+#     pass
 if not DEBUG:
     SECRET_KEY = 'KEY'
     DATABASES = {
