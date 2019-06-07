@@ -97,10 +97,20 @@ WSGI_APPLICATION = 'arqui.wsgi.application'
 
 if DEBUG:
     SECRET_KEY = '-(!w4wx5fc34(gk703+u40_sctk-m406q^ibl)(f27t!snw45#'
-    DATABASES = {
+    # DATABASES = {
+    #     'default': {
+    #         'ENGINE': 'django.db.backends.sqlite3',
+    #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    #     }
+    # }
+     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+            'ENGINE' : 'django.db.backends.postgresql_psycopg2',
+            'NAME' : 'isaac',
+            'USER': 'postgres',
+            'PASSWORD': 'vasquez123',
+            'HOST': 'localhost',
+            'PORT': '5432'
         }
     }
 
