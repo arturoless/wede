@@ -30,6 +30,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
+PI = False
+
 ALLOWED_HOSTS = ['wede.herokuapp.com']
 
 
@@ -152,7 +154,7 @@ try:
     from arqui.pi_settings import *
 except ImportError:
     pass
-if not DEBUG:
+if not PI:
     SECRET_KEY = 'KEY'
     DATABASES = {
         'default': dj_database_url.config(
