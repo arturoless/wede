@@ -151,11 +151,10 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 try:
     from arqui.pi_settings import *
 except ImportError:
-    pass
-if not DEBUG:
     SECRET_KEY = 'KEY'
     DATABASES = {
         'default': dj_database_url.config(
             default=config('DATABASE_URL')
         )
     }
+    

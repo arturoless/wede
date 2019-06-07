@@ -137,8 +137,6 @@ STATIC_URL = '/static/'
 try:
     from arqui.local_settings import *
 except ImportError:
-    pass
-if not DEBUG:
     SECRET_KEY = '-(!w4wx5fc34(gk703+u40_sctk-m406q^ibl)(f27t!snw45#'
     DATABASES = {
         'default': {
