@@ -149,7 +149,7 @@ STATICFILES_DIRS = (
 )
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-if socket.gethostbyname(socket.gethostname()) == '192.168.1.7':
+if socket.gethostbyname(socket.gethostname()) == '192.168.1.111':
     from arqui.pi_settings import *
 else:
     try:
@@ -157,7 +157,7 @@ else:
     except ImportError:
         pass
 
-if not PI:
+if not PI and not DEBUG:
     SECRET_KEY = 'KEY'
     DATABASES = {
         'default': dj_database_url.config(
