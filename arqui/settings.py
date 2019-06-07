@@ -149,7 +149,7 @@ STATICFILES_DIRS = (
 )
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-print(socket.gethostname())
+print(socket.gethostbyname(socket.gethostname()))
 # try:
     
 #     from arqui.pi_settings import *
