@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-
+import socket
 
 #heroku
 from decouple import config
@@ -30,7 +30,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-PI = False
 
 ALLOWED_HOSTS = ['wede.herokuapp.com']
 
@@ -150,11 +149,13 @@ STATICFILES_DIRS = (
 )
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-try:
-    from arqui.pi_settings import *
-except ImportError:
-    pass
-if not PI:
+print(socket.gethostname())
+# try:
+    
+#     from arqui.pi_settings import *
+# except ImportError:
+#     pass
+if not DEBUG:
     SECRET_KEY = 'KEY'
     DATABASES = {
         'default': dj_database_url.config(

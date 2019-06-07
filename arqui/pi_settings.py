@@ -26,7 +26,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-PI=False
 ALLOWED_HOSTS = ['*']
 
 
@@ -137,9 +136,6 @@ STATIC_URL = '/static/'
 try:
     from arqui.local_settings import *
 except ImportError:
-    PI=True
-
-if PI:
     SECRET_KEY = '-(!w4wx5fc34(gk703+u40_sctk-m406q^ibl)(f27t!snw45#'
     DATABASES = {
         'default': {
